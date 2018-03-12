@@ -28,6 +28,5 @@ ui = H.component
         [ HH.h1_ [ HH.text "Your Items" ]
         , HH.p_ [ HH.text "Snowy Owl" ]
         ]
-
     eval :: Input ~> H.ComponentDSL State Input Void m
     eval (Noop n) = pure n

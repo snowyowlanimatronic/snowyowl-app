@@ -14,6 +14,6 @@ To run the project (currently up-to-date for Purescript 0.11.7):
 # Serve
 > pulp server
 
-# Open the test page
+# Open the index page
 > http://localhost:1337/index.html
 ```

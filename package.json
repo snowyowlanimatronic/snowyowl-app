@@ -1,7 +1,7 @@
 {
   "name": "snowyowl-app",
   "version": "0.1.0",
-  "description": "Brief example of purescript-routing",
+  "description": "Snowy Owl App",
   "main": "index.js",
   "directories": {
     "test": "test"

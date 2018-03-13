@@ -1,5 +1,5 @@
 {
-  "name": "purescript-routing-example",
+  "name": "snowyowl-app",
   "version": "0.1.0",
   "description": "Brief example of purescript-routing",
   "main": "index.js",
@@ -12,14 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/parsonsmatt/purescript-routing-example.git"
+    "url": "git+ssh://git@github.com/snowyowlanimatronic/snowyowl-app.git"
   },
-  "author": "Matt Parsons",
+  "author": "Snowy Owl Animatronic",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/parsonsmatt/purescript-routing-example/issues"
+    "url": "https://github.com/snowyowlanimatronic/snowyowl-app/issues"
   },
-  "homepage": "https://github.com/parsonsmatt/purescript-routing-example#readme",
+  "homepage": "https://github.com/snowyowlanimatronic/snowyowl-app#readme",
   "dependencies": {
     "purescript": "^0.11.6",
     "purescript-psa": "0.5.1",

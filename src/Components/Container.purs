@@ -1,11 +1,14 @@
 module Component.Container where
 
 import Prelude
+
+import Component.Button as Button
+import Control.Monad.Eff.Exception (stack)
+import Control.Monad.State (state)
 import Data.Maybe (Maybe(..), maybe)
 import Halogen as H
 import Halogen.HTML as HH
 import Halogen.HTML.Events as HE
-import Component.Button as Button
 
 --import Data.Maybe (Maybe(..))
 --import Halogen as H
@@ -69,8 +72,19 @@ ui =
   render :: State -> H.ParentHTML Query Button.Query Slot m 
   render state = 
     HH.div_
-      [ HH.slot Slot Button.myButton unit (HE.input HandleButton) ]
-
+      [ HH.slot Slot Button.myButton unit (HE.input HandleButton) 
+      , HH.p_
+          [ HH.text ("Button has been toggled " <> show state.toggleCount <> " time(s)") ]
+      , HH.p_
+          [ HH.text
+            $ "Last time I checked, the button was: "
+            <> (maybe "(not checked yet)" (if _ then "on" else "off") state.buttonState)
+            <> ". "
+          , HH.button
+            [ HE.onClick (HE.input_ CheckButtonState) ]
+            [ HH.text "Check now"]
+          ]
+      ]
 
     --eval :: Input ~> H.ComponentDSL State Input Void m
     --eval :: Query ~> H.ComponentDSL State Query Void m

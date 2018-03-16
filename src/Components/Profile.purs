@@ -1,13 +1,13 @@
 module Component.Profile where
 
-import CSS (a)
+import Prelude
+
+import CSS (color, red)
 import Data.Maybe (Maybe(..))
 import Halogen as H
 import Halogen.HTML as HH
-import Prelude (class Eq, class Ord, type (~>), Unit, Void, const, pure, unit)
-
---data Input a
---  = Noop a
+import Halogen.HTML.CSS as CSS
+--import Prelude (class Eq, class Ord, type (~>), Unit, Void, const, pure, unit)
 
 type State = Unit
 
@@ -19,7 +19,6 @@ derive instance ordSlot :: Ord Slot
 data Query a
   = Noop a
 
---ui :: forall m. H.Component HH.HTML Input Unit Void m
 ui :: forall m. H.Component HH.HTML Query Unit Void m
 ui = H.component
   { initialState: const unit
@@ -30,10 +29,9 @@ ui = H.component
   where
     render _ =
       HH.div_
-        [ HH.h1_ [ HH.text "Your Profile" ]
+        [ HH.h1_ [ HH.text "Your Profile"]
         , HH.p_ [ HH.text "what a nice profile!" ]
         ]
 
-    --eval :: Input ~> H.ComponentDSL State Input Void m
     eval :: Query ~> H.ComponentDSL State Query Void m
     eval (Noop n) = pure n

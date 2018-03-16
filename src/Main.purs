@@ -8,6 +8,7 @@ import Halogen.Aff as HA
 import Halogen.VDom.Driver (runUI)
 
 import Router as R
+--import Component.ItemList as IL
 
 main :: forall eff. Eff (HA.HalogenEffects eff) Unit
 main = HA.runHalogenAff do

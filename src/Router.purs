@@ -1,20 +1,24 @@
 module Router where
 
 import BigPrelude
+
+import Component.Container as Container
+--import Component.ItemList as ItemList
+import Component.Profile as Profile
+import Control.Monad.Aff (Aff)
+import Control.Monad.State.Class (modify)
+import Data.Either.Nested (Either3)
+import Data.Functor.Coproduct (Coproduct)
+import Data.Functor.Coproduct.Nested (Coproduct3)
+import Data.String (toLower)
+import Halogen as H
+import Halogen.Aff as HA
+import Halogen.Component.ChildPath (ChildPath, cpL, cpR, (:>))
+import Halogen.HTML as HH
+import Halogen.HTML.Properties as HP
 import Routing (matchesAff)
 import Routing.Match (Match)
 import Routing.Match.Class (lit, num)
-import Component.Profile as Profile
-import Component.Items as Items
-import Halogen as H
-import Halogen.Aff as HA
-import Halogen.HTML as HH
-import Halogen.HTML.Properties as HP
-import Control.Monad.Aff (Aff)
-import Control.Monad.State.Class (modify)
-import Data.Functor.Coproduct (Coproduct)
-import Data.String (toLower)
-import Halogen.Component.ChildPath (ChildPath, cpR, cpL)
 
 data Input a
   = Goto Routes a
@@ -25,7 +29,8 @@ data CRUD
 
 data Routes
   = Profile
-  | Items CRUD
+--  | ItemList CRUD
+  | Container
   | Home
 
 init :: State
@@ -33,27 +38,40 @@ init = { currentPage: "Home" }
 
 routing :: Match Routes
 routing = profile
-      <|> items
+--      <|> itemlist
+      <|> container
       <|> home
   where
     profile = Profile <$ route "profile"
     home = Home <$ lit ""
-    items = Items <$> (route "items" *> parseCRUD)
+--    itemlist = ItemList <$> (route "itemlist" *> parseCRUD)
+    container = Container <$ route "container"
     route str = lit "" *> lit str
-    parseCRUD = Show <$> num <|> pure Index
+--    parseCRUD = Show <$> num <|> pure Index
 
 type State =
   { currentPage :: String
   }
 
-type ChildQuery = Coproduct Profile.Input Items.Input
-type ChildSlot = Either Profile.Slot Items.Slot
+--type ChildState = Either3 ProfileState ItemListState ContainerState
 
-pathToProfile :: ChildPath Profile.Input ChildQuery Profile.Slot ChildSlot
+--type ChildQuery = Coproduct Profile.Input ItemList.Input
+type ChildQuery = Coproduct Profile.Query Container.Query
+--type ChildSlot = Either Profile.Slot ItemList.Slot
+type ChildSlot = Either Profile.Slot Container.Slot
+
+--pathToProfile :: ChildPath Profile.Input ChildQuery Profile.Slot ChildSlot
+--pathToProfile = cpL
+pathToProfile :: ChildPath Profile.Query ChildQuery Profile.Slot ChildSlot
 pathToProfile = cpL
 
-pathToItems :: ChildPath Items.Input ChildQuery Items.Slot ChildSlot
-pathToItems = cpR
+--pathToItemList :: ChildPath ItemList.Input ChildQuery ItemList.Slot ChildSlot
+--pathToItemList = cpR
+--pathToItemList :: ChildPath ItemList.Input ChildQuery ItemList.Slot ChildSlot
+--pathToItemList = cpR :> cpL
+
+pathToContainer :: ChildPath Container.Query ChildQuery Container.Slot ChildSlot
+pathToContainer = cpR
 
 type QueryP
   = Coproduct Input ChildQuery
@@ -70,15 +88,15 @@ ui = H.parentComponent
     render st =
       HH.div_
         [ HH.h1_ [ HH.text (st.currentPage) ]
-        , HH.ul_ (map link ["Items", "Profile", "Home"])
+        , HH.ul_ (map link ["Container", "Profile", "Home"])
         , viewPage st.currentPage
         ]
 
     link s = HH.li_ [ HH.a [ HP.href ("#/" <> toLower s) ] [ HH.text s ] ]
 
     viewPage :: String -> H.ParentHTML Input ChildQuery ChildSlot m
-    viewPage "Items" =
-      HH.slot' pathToItems Items.Slot Items.ui unit absurd      
+    viewPage "Container" =
+      HH.slot' pathToContainer Container.Slot Container.ui unit absurd
     viewPage "Profile" =
       HH.slot' pathToProfile Profile.Slot Profile.ui unit absurd
     viewPage _ =
@@ -88,11 +106,14 @@ ui = H.parentComponent
     eval (Goto Profile next) = do
       modify (_ { currentPage = "Profile" })
       pure next
-    eval (Goto (Items view) next) = do
-      modify case view of
-                  Index -> (_ { currentPage = "Items" })
-                  Show n -> (_ { currentPage = "Item " <> show n })
-      pure next      
+--    eval (Goto (ItemList view) next) = do
+--      modify case view of
+--                  Index -> (_ { currentPage = "ItemList" })
+--                  Show n -> (_ { currentPage = "ItemList " <> show n })
+--      pure next
+    eval (Goto Container next) = do
+      modify (_ { currentPage = "Container" })
+      pure next
     eval (Goto Home next) = do
       modify (_ { currentPage = "Home" })
       pure next

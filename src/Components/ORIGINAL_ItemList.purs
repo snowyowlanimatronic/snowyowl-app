@@ -1,38 +1,19 @@
-module Component.ItemList where
-
--- added START
+module Component.ORIGINALItemList where
+  
 import Prelude
+
 import Component.Item (ItemQuery(..), ItemMessage(..), item)
 import Data.Array (snoc, filter, length)
 import Data.Array.ST.Iterator (next)
 import Data.Map as M
 import Data.Maybe (Maybe(..), fromMaybe)
--- import Halogen as H
+import Halogen as H
 import Halogen.HTML (a)
--- import Halogen.HTML as HH
+import Halogen.HTML as HH
 import Halogen.HTML.Events as HE
 import Model.Item (ItemId, initialItem)
 import Model.ItemList (ItemList, initialItemList)
--- added END
 
---import Data.Maybe (Maybe(..))
-import Halogen as H
-import CSS (color, red)
-import Halogen.HTML as HH
-import Halogen.HTML.CSS as CSS
---import Prelude (class Eq, class Ord, type (~>), Unit, Void, const, pure, unit)
-
-data Input a
-  = Noop a
-
-type State = Unit
-
-data Slot = Slot
-
-derive instance eqSlot :: Eq Slot
-derive instance ordSlot :: Ord Slot
-
--- added START
 -- | The itemlist component query algebra.
 data ItemListQuery a 
   = NewItem a
@@ -93,23 +74,3 @@ addItem st = st { nextId = st.nextId + 1, items = st.items `snoc` st.nextId }
 -- | Removes an item from the current state.
 removeItem :: ItemId -> ItemList -> ItemList 
 removeItem itemId st = st { items = filter (_ /= itemId) st.items }
--- added END
-
-
--- to be removed START
-ui :: forall m. H.Component HH.HTML Input Unit Void m
-ui = H.component
-  { initialState: const unit
-  , render
-  , eval
-  , receiver: const Nothing
-  }
-  where
-    render _ =
-      HH.div_
-        [ HH.h1 [CSS.style do color red] [ HH.text "Your Items" ]
-        , HH.p_ [ HH.text "Snowy Owl" ]
-        ]
-    eval :: Input ~> H.ComponentDSL State Input Void m
-    eval (Noop n) = pure n
--- to be removed END

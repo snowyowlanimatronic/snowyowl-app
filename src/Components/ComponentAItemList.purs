@@ -1,4 +1,4 @@
-module Component.ItemList where
+module Component.ComponentAItemList where
 
 import Prelude
 

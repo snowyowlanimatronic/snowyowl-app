@@ -12,10 +12,10 @@ To run the project (currently up-to-date for Purescript 0.11.7):
 > npm run build
 
 # Serve
-> pulp server
+> npm start
 
 # Open the index page
-> http://localhost:1337/index.html
+> http://localhost:8080/
 ```
 
 References:

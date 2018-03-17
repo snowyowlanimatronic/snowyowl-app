@@ -1,9 +1,17 @@
 module Component.Item where
-  
-import Model.Item
+
 import Prelude
 
+import Model.Item
+import Model.Order
+
 import Color.Scheme.X11 (turquoise)
+
+import Control.Monad.Eff (Eff, kind Effect)
+import Control.Monad.Eff.Class (liftEff)
+import Control.Monad.Eff.Exception (message)
+import Control.Monad.Aff (runAff)
+import Control.Monad.Aff.Endpoint (execEndpoint)
 import Control.Monad.State as CMS
 import DOM.HTML.Indexed.InputType as HP
 import Data.Array.ST.Iterator (next)
@@ -14,6 +22,10 @@ import Halogen.HTML (a)
 import Halogen.HTML as HH
 import Halogen.HTML.Events as HE
 import Halogen.HTML.Properties as HP
+import Network.HTTP.Affjax (AJAX)
+
+foreign import data DOM :: Effect
+foreign import appendToBody :: forall eff. String -> Eff (dom :: DOM | eff) Unit
 
 -- | The item component query algebra.
 data ItemQuery a

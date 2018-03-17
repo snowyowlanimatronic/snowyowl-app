@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/snowyowlanimatronic/snowyowl-app#readme",
   "dependencies": {
+    "body-parser": "*",
     "purescript": "^0.11.6",
     "purescript-psa": "0.5.1",
     "pulp": "^11.0.0"

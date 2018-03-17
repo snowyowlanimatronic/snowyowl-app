@@ -17,3 +17,8 @@ To run the project (currently up-to-date for Purescript 0.11.7):
 # Open the index page
 > http://localhost:1337/index.html
 ```
+
+References:
+
+"Type-safe client-server communication with PureScript" at 
+[https://frigoeu.github.io/phantomtypes.html](https://frigoeu.github.io/phantomtypes.html)

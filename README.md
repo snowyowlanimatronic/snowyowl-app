@@ -22,3 +22,5 @@ References:
 
 "Type-safe client-server communication with PureScript" at 
 [https://frigoeu.github.io/phantomtypes.html](https://frigoeu.github.io/phantomtypes.html)
+
+And accompanying example at [https://github.com/FrigoEU/purescript-endpoints-express-example](https://github.com/FrigoEU/purescript-endpoints-express-example)

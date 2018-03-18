@@ -4,7 +4,7 @@ import Prelude
 
 import CSS as CB
 --import Component.Button as Button
-import Component.ItemList as ComponentA
+import ItemList.Component as ComponentA
 import Component.ComponentB as ComponentB
 import Component.ComponentC as ComponentC
 import Control.Monad.Eff.Exception (stack)

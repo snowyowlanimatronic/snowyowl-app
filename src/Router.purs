@@ -2,9 +2,9 @@ module Router where
 
 import BigPrelude
 
-import Component.Container as Container
+import Container.Component as Container
 --import Component.ItemList as ItemList
-import Component.Profile as Profile
+import Profile.Component as Profile
 import Control.Monad.Aff (Aff)
 import Control.Monad.State.Class (modify)
 import Data.Either.Nested (Either3)

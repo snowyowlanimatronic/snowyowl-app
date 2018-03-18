@@ -1,4 +1,4 @@
-module Component.Button where
+module Button.Component where
 
 import Prelude
 import Data.Maybe (Maybe(..))

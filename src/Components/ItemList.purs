@@ -2,7 +2,7 @@ module Component.ItemList where
 
 import Prelude
 
-import Component.Item (ItemQuery(..), ItemMessage(..), item)
+import Item.Component (ItemQuery(..), ItemMessage(..), item)
 import Data.Array (snoc, filter, length)
 import Data.Array.ST.Iterator (next)
 import Data.Map as M

@@ -24,3 +24,5 @@ References:
 [https://frigoeu.github.io/phantomtypes.html](https://frigoeu.github.io/phantomtypes.html)
 
 And accompanying example at [https://github.com/FrigoEU/purescript-endpoints-express-example](https://github.com/FrigoEU/purescript-endpoints-express-example)
+
+"Halogen Menu" at [https://github.com/slamdata/purescript-halogen-menu](https://github.com/slamdata/purescript-halogen-menu)

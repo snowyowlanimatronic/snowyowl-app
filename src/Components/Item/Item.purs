@@ -2,8 +2,8 @@ module Item.Component where
 
 import Prelude
 
-import Model.Item
-import Model.Order
+import Item.Model
+import Order.Model
 
 import Color.Scheme.X11 (turquoise)
 

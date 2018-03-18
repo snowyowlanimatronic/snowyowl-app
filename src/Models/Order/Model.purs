@@ -1,4 +1,4 @@
-module Model.Order where
+module Order.Model where
 
 import Prelude (class Show, Unit)
 

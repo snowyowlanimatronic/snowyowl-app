@@ -9,7 +9,7 @@ import Network.HTTP.Affjax (AJAX)
 
 import Data.Array (filter)
 
-import Model.Order
+import Order.Model
 
 import Node.Express.Endpoint (EXPRESS, listen, hostStatic, hostEndpoint, makeApp)
 

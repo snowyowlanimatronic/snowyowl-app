@@ -1,4 +1,4 @@
-module Model.Item where
+module Item.Model where
 
 import Prelude
 

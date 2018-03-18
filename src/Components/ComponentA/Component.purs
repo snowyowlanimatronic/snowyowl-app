@@ -1,4 +1,4 @@
-module Component.ComponentA where
+module ComponentA.Component where
 
 import Prelude
 

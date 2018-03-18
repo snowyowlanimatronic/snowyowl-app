@@ -1,4 +1,4 @@
-module Component.Items where
+module Items.Component where
 
 import Data.Maybe (Maybe(..))
 import Halogen as H

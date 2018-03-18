@@ -1,6 +1,6 @@
-module Model.ItemList where
+module ItemList.Model where
 
-import Model.Item (ItemId)
+import Item.Model (ItemId)
   
 type ItemList = 
   {

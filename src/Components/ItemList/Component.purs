@@ -11,8 +11,8 @@ import Halogen as H
 import Halogen.HTML (a)
 import Halogen.HTML as HH
 import Halogen.HTML.Events as HE
-import Model.Item (ItemId, initialItem)
-import Model.ItemList (ItemList, initialItemList)
+import Item.Model (ItemId, initialItem)
+import ItemList.Model (ItemList, initialItemList)
 
 type State = Boolean
 

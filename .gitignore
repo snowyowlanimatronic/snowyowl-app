@@ -3,6 +3,8 @@
 /node_modules/
 /output/
 /.psci*
+/.psc*
+/.psa*
 /src/.webpack.js
 .psc-ide-port
 /static/server.js

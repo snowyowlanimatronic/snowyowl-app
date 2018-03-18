@@ -1,6 +1,18 @@
 # snowyowl-app
 Snowy Owl - App
 
+## Get Started
+
+```bash
+git clone git@github.com:snowyowlanimatronic/snowyowl-app.git
+cd snowyowl-app
+# Install nvm, npm, and yarn.
+nvm use
+yarn run installPackages
+yarn run buildDist
+xdg-open dist/index.html
+```
+
 To run the project (currently up-to-date for Purescript 0.11.7):
 
 ```

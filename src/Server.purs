@@ -20,7 +20,8 @@ main :: forall eff. Eff ( console :: CONSOLE, express :: EXPRESS, ajax :: AJAX, 
 main = do
   app <- makeApp []
   hostEndpoint app getOrdersEndpoint (\productId _ -> pure $ filterOrders productId)
-  hostStatic app "static"
+  --hostStatic app "static"
+  hostStatic app "dist"  
   listen app 8080
   log "Listening on port 8080"
 

@@ -23,9 +23,6 @@
     "purescript-psci-support": "^3.0.0"
   },
   "resolutions": {
-    "purescript-halogen": "^2.1.0",
-    "purescript-aff": "^3.0.0",
-    "purescript-dom-indexed": "^3.0.0",
-    "purescript-fork": "^2.0.0"
+    "purescript-halogen": "^2.1.0"
   }
 }

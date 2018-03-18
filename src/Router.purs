@@ -3,7 +3,6 @@ module Router where
 import BigPrelude
 
 import Container.Component as Container
---import Component.ItemList as ItemList
 import Profile.Component as Profile
 import Control.Monad.Aff (Aff)
 import Control.Monad.State.Class (modify)

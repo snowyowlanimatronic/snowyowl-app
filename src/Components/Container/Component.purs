@@ -3,10 +3,10 @@ module Container.Component where
 import Prelude
 
 import CSS as CB
---import Component.Button as Button
-import ItemList.Component as ComponentA
 import ComponentB.Component as ComponentB
 import ComponentC.Component as ComponentC
+--import Container.Component.Query (Query)
+import Container.Component.State (State)
 import Control.Monad.Eff.Exception (stack)
 import Control.Monad.State (state)
 import Data.Either.Nested (Either3)
@@ -17,14 +17,9 @@ import Halogen.Component.ChildPath as CP
 import Halogen.HTML as HH
 import Halogen.HTML.Events as HE
 import Halogen.HTML.Properties as HP
+import ItemList.Component as ComponentA
 
-data Query a
-  = ReadStates a
-
-type State =
-  { b :: Maybe Int
-  , c :: Maybe String
-  }
+data Query a = ReadStates a
 
 type ChildQuery = Coproduct3 ComponentA.Query ComponentB.Query ComponentC.Query
 type ChildSlot = Either3 Unit Unit Unit

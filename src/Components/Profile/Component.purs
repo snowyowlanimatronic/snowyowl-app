@@ -7,9 +7,12 @@ import Data.Maybe (Maybe(..))
 import Halogen as H
 import Halogen.HTML as HH
 import Halogen.HTML.CSS as CSS
+--import Profile.Component.Query (Query(..))
+import Profile.Component.State (State())
+
 --import Prelude (class Eq, class Ord, type (~>), Unit, Void, const, pure, unit)
 
-type State = Unit
+--type State = Unit
 
 data Slot = Slot
 

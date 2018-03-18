@@ -5,8 +5,8 @@ import Prelude
 import CSS as CB
 --import Component.Button as Button
 import ItemList.Component as ComponentA
-import Component.ComponentB as ComponentB
-import Component.ComponentC as ComponentC
+import ComponentB.Component as ComponentB
+import ComponentC.Component as ComponentC
 import Control.Monad.Eff.Exception (stack)
 import Control.Monad.State (state)
 import Data.Either.Nested (Either3)

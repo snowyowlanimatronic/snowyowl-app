@@ -69,7 +69,7 @@ Now run the Snowy Owl web app on the Tessel 2:
 t2 run server_tessel2.js
 ```
 
-
+Rewrite Server.purs so it includes the logic of server_tessels.js to toggle LEDs on the Tessel 2. Later include a REST API to manipulate a Servo motor.
 
 References:
 

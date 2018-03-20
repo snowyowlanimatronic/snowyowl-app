@@ -51,6 +51,18 @@ It will return:
 [{"values":[{"quantity":6,"productId":2}],"tag":"EndpointExample.Model.Order"}]
 ```
 
+TO DO:
+
+Make it so that we can call the Server's REST API with:
+
+```javascript
+GET http://localhost:8080/leds/2
+```
+
+The Server should apply the LED id to toggle the GREEN LED which has ID 2 on the Tessel 2.
+
+TO DO Next, make the Server run on the Tessel 2 and listen to http://192.168.1.101 on WiFi Access Point "Snowy-Owl"
+
 References:
 
 "Type-safe client-server communication with PureScript" at 

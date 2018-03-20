@@ -10,7 +10,16 @@ cd snowyowl-app
 nvm use
 yarn run installPackages
 yarn run buildDist
+```
+
+On Linux:
+```bash
 xdg-open dist/index.html
+```
+
+On Windows:
+```bash
+start .\dist\index.html
 ```
 
 To run the project (currently up-to-date for Purescript 0.11.7):
@@ -28,6 +37,18 @@ To run the project (currently up-to-date for Purescript 0.11.7):
 
 # Open the index page
 > http://localhost:8080/
+```
+
+Call the Server's REST API as follows with e.g. Postman:
+
+```javascript
+GET http://localhost:8080/getorders?params=2
+```
+
+It will return:
+
+```javascript
+[{"values":[{"quantity":6,"productId":2}],"tag":"EndpointExample.Model.Order"}]
 ```
 
 References:

@@ -63,6 +63,14 @@ The Server should apply the LED id to toggle the GREEN LED which has ID 2 on the
 
 TO DO Next, make the Server run on the Tessel 2 and listen to http://192.168.1.101 on WiFi Access Point "Snowy-Owl"
 
+Now run the Snowy Owl web app on the Tessel 2:
+
+```javascript
+t2 run server_tessel2.js
+```
+
+
+
 References:
 
 "Type-safe client-server communication with PureScript" at 

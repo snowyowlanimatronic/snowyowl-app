@@ -36,7 +36,7 @@
     response.writeHead(200, {"Content-Type": "text/html"});
 
     // Use fs to read in index.html
-    fs.readFile(__dirname + '/index.html', function (err, content) {
+    fs.readFile(__dirname + '/dist/index.html', function (err, content) {
       // If there was an error, throw to stop code execution
       if (err) {
         throw err;

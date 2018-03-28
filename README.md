@@ -6,9 +6,29 @@ Snowy Owl - App
 ```bash
 git clone git@github.com:snowyowlanimatronic/snowyowl-app.git
 cd snowyowl-app
-# Install nvm, npm, and yarn.
-nvm use
+
+# Install bower
+npm install -g bower
+
+# Install yarn
+npm install -g yarn
+
+# install nvm for windows following these instructions
+https://github.com/coreybutler/nvm-windows
+
+# After installing, set nvm in environment variable NVM_HOME, e.g.
+# C:\Users\user\AppData\Roaming\nvm\nvm.exe
+
+# Use nvm to see the node versions installed
+nvm list
+
+# Set the node version to use (e.g. 8.10.0).
+nvm use 8.10.0
+
+# Install npm, and yarn.
 yarn run installPackages
+
+# Make sure the 'dist' directory is deleted before running below script
 yarn run buildDist
 ```
 
@@ -102,6 +122,8 @@ And accompanying example at [https://github.com/FrigoEU/purescript-endpoints-exp
 "Halogen Menu" at [https://github.com/slamdata/purescript-halogen-menu](https://github.com/slamdata/purescript-halogen-menu)
 
 What to do when the Tessel 2 is not detected.
+
+First and foremost try unconnecting the USB cable of the Tessel 2 from the PC then reconnecting the USB cable of the Tessel 2 to the PC.
 
 We got our windows 7 and windows 10 laptops detecting the Tessel 2 and running blinkie.
 Here's what we did:

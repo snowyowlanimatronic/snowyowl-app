@@ -30,6 +30,7 @@
   "homepage": "https://github.com/snowyowlanimatronic/snowyowl-app#readme",
   "dependencies": {
     "body-parser": "*",
+    "bower": "^1.8.4",
     "compression": "^1.6.0",
     "express": "*",
     "g": "^2.0.1",

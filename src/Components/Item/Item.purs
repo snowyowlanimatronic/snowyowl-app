@@ -1,17 +1,17 @@
 module Item.Component where
 
-import Prelude
-
 import Item.Model
 import Order.Model
+import Prelude
 
 import Color.Scheme.X11 (turquoise)
-
+import Button.Component (Query(..))
+import Item.Component (ItemMessage(..))
+import Control.Monad.Aff (runAff)
+import Control.Monad.Aff.Endpoint (execEndpoint)
 import Control.Monad.Eff (Eff, kind Effect)
 import Control.Monad.Eff.Class (liftEff)
 import Control.Monad.Eff.Exception (message)
-import Control.Monad.Aff (runAff)
-import Control.Monad.Aff.Endpoint (execEndpoint)
 import Control.Monad.State as CMS
 import DOM.HTML.Indexed.InputType as HP
 import Data.Array.ST.Iterator (next)
@@ -56,7 +56,7 @@ item initialState =
         , HP.autofocus true
         , HP.value i.title
         , HE.onValueChange (HE.input UpdateTitle)    
-        ]
+        ]      
       , HH.button 
         [
           HP.title "Remove item"

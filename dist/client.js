@@ -9305,20 +9305,12 @@ var PS = {};
 (function(exports) {
     "use strict";
   var $foreign = PS["Item.Component"];
-  var Button_Component = PS["Button.Component"];
-  var Color_Scheme_X11 = PS["Color.Scheme.X11"];
   var Control_Applicative = PS["Control.Applicative"];
   var Control_Bind = PS["Control.Bind"];
-  var Control_Monad_Aff = PS["Control.Monad.Aff"];
-  var Control_Monad_Aff_Endpoint = PS["Control.Monad.Aff.Endpoint"];
   var Control_Monad_Eff = PS["Control.Monad.Eff"];
-  var Control_Monad_Eff_Class = PS["Control.Monad.Eff.Class"];
-  var Control_Monad_Eff_Exception = PS["Control.Monad.Eff.Exception"];
   var Control_Monad_State = PS["Control.Monad.State"];
   var Control_Monad_State_Class = PS["Control.Monad.State.Class"];
   var DOM_HTML_Indexed_InputType = PS["DOM.HTML.Indexed.InputType"];
-  var Data_Array_ST_Iterator = PS["Data.Array.ST.Iterator"];
-  var Data_Bifunctor = PS["Data.Bifunctor"];
   var Data_Function = PS["Data.Function"];
   var Data_Maybe = PS["Data.Maybe"];
   var Halogen = PS["Halogen"];
@@ -9330,8 +9322,6 @@ var PS = {};
   var Halogen_HTML_Properties = PS["Halogen.HTML.Properties"];
   var Halogen_Query_HalogenM = PS["Halogen.Query.HalogenM"];
   var Item_Model = PS["Item.Model"];
-  var Network_HTTP_Affjax = PS["Network.HTTP.Affjax"];
-  var Order_Model = PS["Order.Model"];
   var Prelude = PS["Prelude"];        
 
   // | The item component query algebra.
@@ -9346,6 +9336,17 @@ var PS = {};
           };
       };
       return UpdateTitle;
+  })();
+
+  // | The item component query algebra.
+  var Toggle = (function () {
+      function Toggle(value0) {
+          this.value0 = value0;
+      };
+      Toggle.create = function (value0) {
+          return new Toggle(value0);
+      };
+      return Toggle;
   })();
 
   // | The item component query algebra.
@@ -9365,11 +9366,18 @@ var PS = {};
       NotifyRemove.value = new NotifyRemove();
       return NotifyRemove;
   })();
+  var NotifyToggle = (function () {
+      function NotifyToggle() {
+
+      };
+      NotifyToggle.value = new NotifyToggle();
+      return NotifyToggle;
+  })();
 
   // | The item component definition.
   var item = function (initialState) {
       var render = function (i) {
-          return Halogen_HTML_Elements.li_([ Halogen_HTML_Elements.input([ Halogen_HTML_Properties.type_(Halogen_HTML_Core.inputTypeIsProp)(DOM_HTML_Indexed_InputType.InputText.value), Halogen_HTML_Properties.placeholder("Untitled"), Halogen_HTML_Properties.autofocus(true), Halogen_HTML_Properties.value(i.title), Halogen_HTML_Events.onValueChange(Halogen_HTML_Events.input(UpdateTitle.create)) ]), Halogen_HTML_Elements.button([ Halogen_HTML_Properties.title("Remove item"), Halogen_HTML_Events.onClick(Halogen_HTML_Events.input_(Remove.create)) ])([ Halogen_HTML_Core.text("X") ]) ]);
+          return Halogen_HTML_Elements.li_([ Halogen_HTML_Elements.input([ Halogen_HTML_Properties.type_(Halogen_HTML_Core.inputTypeIsProp)(DOM_HTML_Indexed_InputType.InputText.value), Halogen_HTML_Properties.placeholder("Untitled"), Halogen_HTML_Properties.autofocus(true), Halogen_HTML_Properties.value(i.title), Halogen_HTML_Events.onValueChange(Halogen_HTML_Events.input(UpdateTitle.create)) ]), Halogen_HTML_Elements.button([ Halogen_HTML_Properties.title("Toggle item"), Halogen_HTML_Events.onClick(Halogen_HTML_Events.input_(Toggle.create)) ])([ Halogen_HTML_Core.text("Toggle") ]), Halogen_HTML_Elements.button([ Halogen_HTML_Properties.title("Remove item"), Halogen_HTML_Events.onClick(Halogen_HTML_Events.input_(Remove.create)) ])([ Halogen_HTML_Core.text("X") ]) ]);
       };
       var $$eval = function (v) {
           if (v instanceof UpdateTitle) {
@@ -9391,7 +9399,12 @@ var PS = {};
                   return Control_Applicative.pure(Halogen_Query_HalogenM.applicativeHalogenM)(v.value0);
               });
           };
-          throw new Error("Failed pattern match at Item.Component line 68, column 3 - line 68, column 67: " + [ v.constructor.name ]);
+          if (v instanceof Toggle) {
+              return Control_Bind.discard(Control_Bind.discardUnit)(Halogen_Query_HalogenM.bindHalogenM)(Halogen_Query_HalogenM.raise(NotifyToggle.value))(function () {
+                  return Control_Applicative.pure(Halogen_Query_HalogenM.applicativeHalogenM)(v.value0);
+              });
+          };
+          throw new Error("Failed pattern match at Item.Component line 76, column 3 - line 76, column 67: " + [ v.constructor.name ]);
       };
       return Halogen_Component.component(Halogen_HTML_Core.bifunctorHTML)({
           initialState: Data_Function["const"](initialState),
@@ -9401,8 +9414,10 @@ var PS = {};
       });
   };
   exports["UpdateTitle"] = UpdateTitle;
+  exports["Toggle"] = Toggle;
   exports["Remove"] = Remove;
   exports["NotifyRemove"] = NotifyRemove;
+  exports["NotifyToggle"] = NotifyToggle;
   exports["item"] = item;
 })(PS["Item.Component"] = PS["Item.Component"] || {});
 (function(exports) {
@@ -9416,8 +9431,7 @@ var PS = {};
   exports["initialItemList"] = initialItemList;
 })(PS["ItemList.Model"] = PS["ItemList.Model"] || {});
 (function(exports) {
-  // Generated by purs version 0.11.7
-  "use strict";
+    "use strict";
   var Control_Applicative = PS["Control.Applicative"];
   var Control_Bind = PS["Control.Bind"];
   var Control_Monad_State_Class = PS["Control.Monad.State.Class"];
@@ -9442,6 +9456,8 @@ var PS = {};
   var Item_Model = PS["Item.Model"];
   var ItemList_Model = PS["ItemList.Model"];
   var Prelude = PS["Prelude"];        
+
+  // | The component query algebra.
   var NewItem = (function () {
       function NewItem(value0) {
           this.value0 = value0;
@@ -9451,6 +9467,8 @@ var PS = {};
       };
       return NewItem;
   })();
+
+  // | The component query algebra.
   var HandleItemMessage = (function () {
       function HandleItemMessage(value0, value1, value2) {
           this.value0 = value0;
@@ -9466,18 +9484,36 @@ var PS = {};
       };
       return HandleItemMessage;
   })();
-  var removeItem = function (itemId) {
+
+  // | Toggles an item, TO DO
+  var toggleItem = function (itemId) {
       return function (st) {
-          var $12 = {};
-          for (var $13 in st) {
-              if ({}.hasOwnProperty.call(st, $13)) {
-                  $12[$13] = st[$13];
+          var $14 = {};
+          for (var $15 in st) {
+              if ({}.hasOwnProperty.call(st, $15)) {
+                  $14[$15] = st[$15];
               };
           };
-          $12.items = Data_Array.filter(function (v1) {
+          $14.items = Data_Array.filter(function (v1) {
               return v1 !== itemId;
           })(st.items);
-          return $12;
+          return $14;
+      };
+  };
+
+  // | Removes an item from the current state.
+  var removeItem = function (itemId) {
+      return function (st) {
+          var $17 = {};
+          for (var $18 in st) {
+              if ({}.hasOwnProperty.call(st, $18)) {
+                  $17[$18] = st[$18];
+              };
+          };
+          $17.items = Data_Array.filter(function (v1) {
+              return v1 !== itemId;
+          })(st.items);
+          return $17;
       };
   };
   var eqItemSlot = new Data_Eq.Eq(function (x) {
@@ -9492,17 +9528,21 @@ var PS = {};
           return Data_Ord.compare(Data_Ord.ordInt)(x)(y);
       };
   });
+
+  // | Adds an item to the current state.
   var addItem = function (st) {
-      var $19 = {};
-      for (var $20 in st) {
-          if ({}.hasOwnProperty.call(st, $20)) {
-              $19[$20] = st[$20];
+      var $24 = {};
+      for (var $25 in st) {
+          if ({}.hasOwnProperty.call(st, $25)) {
+              $24[$25] = st[$25];
           };
       };
-      $19.nextId = st.nextId + 1 | 0;
-      $19.items = Data_Array.snoc(st.items)(st.nextId);
-      return $19;
+      $24.nextId = st.nextId + 1 | 0;
+      $24.items = Data_Array.snoc(st.items)(st.nextId);
+      return $24;
   };
+
+  // | The component definition.
   var component = (function () {
       var renderItem = function (itemId) {
           return Halogen_HTML.slot(itemId)(Item_Component.item(Item_Model.initialItem))(Data_Unit.unit)(Halogen_HTML_Events.input(HandleItemMessage.create(itemId)));
@@ -9517,7 +9557,15 @@ var PS = {};
               });
           };
           if (v instanceof HandleItemMessage) {
-              return Control_Bind.discard(Control_Bind.discardUnit)(Halogen_Query_HalogenM.bindHalogenM)(Control_Monad_State_Class.modify(Halogen_Query_HalogenM.monadStateHalogenM)(removeItem(v.value0)))(function () {
+              return Control_Bind.discard(Control_Bind.discardUnit)(Halogen_Query_HalogenM.bindHalogenM)((function () {
+                  if (v.value1 instanceof Item_Component.NotifyRemove) {
+                      return Control_Monad_State_Class.modify(Halogen_Query_HalogenM.monadStateHalogenM)(removeItem(v.value0));
+                  };
+                  if (v.value1 instanceof Item_Component.NotifyToggle) {
+                      return Control_Monad_State_Class.modify(Halogen_Query_HalogenM.monadStateHalogenM)(toggleItem(v.value0));
+                  };
+                  throw new Error("Failed pattern match at ItemList.Component line 67, column 5 - line 71, column 32: " + [ v.value1.constructor.name ]);
+              })())(function () {
                   return Control_Applicative.pure(Halogen_Query_HalogenM.applicativeHalogenM)(v.value2);
               });
           };
@@ -9535,6 +9583,7 @@ var PS = {};
   exports["component"] = component;
   exports["addItem"] = addItem;
   exports["removeItem"] = removeItem;
+  exports["toggleItem"] = toggleItem;
   exports["eqItemSlot"] = eqItemSlot;
   exports["ordItemSlot"] = ordItemSlot;
 })(PS["ItemList.Component"] = PS["ItemList.Component"] || {});

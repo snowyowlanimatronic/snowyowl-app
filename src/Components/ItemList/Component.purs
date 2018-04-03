@@ -67,6 +67,8 @@ component =
     case msg of 
       NotifyRemove -> do 
         H.modify (removeItem p)
+      NotifyToggle -> do
+        H.modify (toggleItem p)
     pure next
 
 -- | Adds an item to the current state.
@@ -75,4 +77,8 @@ addItem st = st { nextId = st.nextId + 1, items = st.items `snoc` st.nextId }
 
 -- | Removes an item from the current state.
 removeItem :: ItemId -> ItemList -> ItemList 
-removeItem itemId st = st { items = filter (_ /= itemId) st.items }    
+removeItem itemId st = st { items = filter (_ /= itemId) st.items }  
+
+-- | Toggles an item, TO DO: currently only removes the item
+toggleItem :: ItemId -> ItemList -> ItemList
+toggleItem itemId st = st { items = filter (_ /= itemId) st.items }

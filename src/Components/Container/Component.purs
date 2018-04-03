@@ -51,17 +51,17 @@ ui =
     HH.div_
     [ HH.div
         [ HP.class_ (H.ClassName "box")]
-        [ HH.h1_ [ HH.text "Component A" ]
+        [ HH.h2_ [ HH.text "Component A" ]
         , HH.slot' CP.cp1 unit ComponentA.component unit absurd
         ]
     , HH.div
         [ HP.class_ (H.ClassName "box")]
-        [ HH.h1_ [ HH.text "Component B" ]
+        [ HH.h2_ [ HH.text "Component B" ]
         , HH.slot' CP.cp2 unit ComponentB.component unit absurd
         ]
     , HH.div
         [ HP.class_ (H.ClassName "box")]
-        [ HH.h1_ [ HH.text "Component C" ]
+        [ HH.h2_ [ HH.text "Component C" ]
         , HH.slot' CP.cp3 unit ComponentC.component unit absurd
         ]
     , HH.p_

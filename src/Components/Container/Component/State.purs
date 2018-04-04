@@ -3,7 +3,8 @@ module Container.Component.State where
 import Data.Maybe (Maybe)
 
 type State =
-  { b :: Maybe Int
-  , c :: Maybe String
-  --, d :: Maybe Int
+  { --a :: Maybe Int
+  --, b :: Maybe String
+  --, c :: Maybe Int
+  --, d :: Maybe Int  
   }

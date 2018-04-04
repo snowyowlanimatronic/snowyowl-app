@@ -1,4 +1,4 @@
-module ComponentD.Component where
+module SubContainerD.Component where
 
 import Prelude
 
@@ -7,7 +7,7 @@ import ComponentA.Component as ComponentA
 import ComponentB.Component as ComponentB
 import ComponentC.Component as ComponentC
 
-import ComponentD.Component.State (State)
+import SubContainerD.Component.State (State)
 import Control.Monad.Eff.Exception (stack)
 import Control.Monad.State (state)
 import Data.Either.Nested (Either3)

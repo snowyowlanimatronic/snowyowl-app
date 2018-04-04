@@ -1,4 +1,4 @@
-module ComponentD.Component.State where
+module SubContainerD.Component.State where
 
 import Data.Maybe (Maybe)
 

@@ -5,7 +5,7 @@ import Prelude
 import CSS as CB
 import ComponentB.Component as ComponentB
 import ComponentC.Component as ComponentC
-import ComponentD.Component as ComponentD
+import SubContainerD.Component as SubContainerD
 --import Container.Component.Query (Query)
 import Container.Component.State (State)
 import Control.Monad.Eff.Exception (stack)
@@ -22,7 +22,7 @@ import Halogen.HTML.Properties as HP
 
 data Query a = ReadStates a
 
-type ChildQuery = Coproduct3 ComponentB.Query ComponentC.Query ComponentD.Query
+type ChildQuery = Coproduct3 ComponentB.Query ComponentC.Query SubContainerD.Query
 type ChildSlot = Either3 Unit Unit Unit
 
 -- Values of the type Slot are used as the IDs for child components
@@ -63,8 +63,8 @@ ui =
         ]
     , HH.div
         [ HP.class_ (H.ClassName "box")]
-        [ HH.h2_ [ HH.text "Component D" ]
-        , HH.slot' CP.cp3 unit ComponentD.ui unit absurd
+        [ HH.h2_ [ HH.text "SubContainer D" ]
+        , HH.slot' CP.cp3 unit SubContainerD.ui unit absurd
         ]   
     , HH.p_
         [ HH.text "Last observed states:"]
